@@ -105,7 +105,10 @@ function Signup() {
 
       const userReference = collection(fireDB, "user");
 
-      addDoc(userReference, user);
+      await addDoc(userReference, user); // Wait for the document to be added
+
+      // Store user data in local storage
+      localStorage.setItem("user", JSON.stringify(user));
 
       navigate("/home");
       localStorage.setItem("token", response.user.accessToken);
